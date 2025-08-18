@@ -2,9 +2,9 @@ import streamlit as st
 import numpy as np
 from predict_resume import predict_resume, model
 
-st.set_page_config(page_title="Resume Classifier", page_icon="📄")
+st.set_page_config(page_title="Resume Classifier - Random Forest Model", page_icon="📄")
 
-st.title("📄 Resume Classifier")
+st.title("📄 Resume Classifier - Random Forest Model")
 
 uploaded_file = st.file_uploader("Upload your resume", type=["docx", "pdf"])
 
@@ -26,4 +26,4 @@ if uploaded_file is not None:
         st.bar_chart({classes[i]: probs[i] for i in top3_idx})
 
     else:
-        st.error(prediction)  # mensaje de error si formato no válido
+        st.error(prediction)

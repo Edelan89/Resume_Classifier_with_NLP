@@ -23,22 +23,26 @@ def clean_text(text):
 # --- Main function: Predict from file ---
 def predict_resume(file):
     ext = os.path.splitext(file.name)[1].lower()
-
-    if ext == ".docx":
+    if ext == '.docx':
         doc = docx.Document(file)
         text = " ".join([para.text for para in doc.paragraphs])
-
-    elif ext == ".pdf":
+    elif ext == '.pdf':
         reader = PdfReader(file)
         text = " ".join([page.extract_text() for page in reader.pages if page.extract_text()])
-
     else:
-        return "Unsupported file format. Please upload a .docx or .pdf file.", None, None
+        return "Unsupported file format. Please upload a .docx or .pdf file."
 
-    # Clean and predict
+    # Preprocesar
     cleaned = clean_text(text)
+
+    # Cargar vectorizer y modelo
+    vectorizer = joblib.load("tfidf_vectorizer.pkl")
+    model = joblib.load("random_forest_model.pkl")
+
+    # Transformar y predecir
     X_new = vectorizer.transform([cleaned])
     prediction = model.predict(X_new)[0]
     probs = model.predict_proba(X_new)[0]
 
-    return prediction, probs, text  # <- also we get the raw text
+    # Devolvemos también el texto crudo
+    return prediction, probs, text
