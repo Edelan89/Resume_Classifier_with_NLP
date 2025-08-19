@@ -4,10 +4,12 @@ import joblib
 import docx
 from PyPDF2 import PdfReader
 from nltk.corpus import stopwords
+import nltk
 
 # Load model and vectorizer
 model = joblib.load("logistic_regression_model.pkl")
 vectorizer = joblib.load("tfidf_vectorizer.pkl")
+nltk.download("stopwords", quiet=True)
 stop_words = set(stopwords.words("english"))
 
 # --- Helper: Clean text ---
