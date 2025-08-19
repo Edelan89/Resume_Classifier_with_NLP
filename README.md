@@ -6,7 +6,7 @@ The app allows users to upload a CV in **PDF or DOCX** format and automatically 
 ---
 
 ## 🚀 Live Demo
-👉 (Coming soon on Streamlit Cloud)  
+👉 [📄 Resume Classifier - Random Forest Model](https://resumeclassifierwithnlp-vjnahhxybnikmnsri8kbne.streamlit.app/)  
 
 ---
 
